@@ -14,6 +14,7 @@ module.exports = function(app) {
 
 
     let response = req.body;
+    
     response.id = notesData.length.toString();
 
     notesData.push(response);
@@ -22,5 +23,5 @@ module.exports = function(app) {
 
   //delete functionality should go here when I figure out how to do that
   
-  
-};
+
+}
