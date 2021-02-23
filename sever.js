@@ -5,13 +5,18 @@ const app = express();
 const PORT = process.env.PORT || 8080;
 
 
+//adding requireds for the routs pages
+require("./routes/api")(app);
+require("./routes/html")(app);
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+//directing to public files for html docts and assets
 app.use(express.static(__dirname + '/public'));
 
 
-require("./routes/api")(app);
-require("./routes/html")(app);
+
 
 app.listen(PORT, function() {
   console.log("App listening on PORT: " + PORT);
