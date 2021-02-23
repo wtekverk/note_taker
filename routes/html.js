@@ -1,13 +1,12 @@
 
-var path = require("path");
+//putting all html routs into one file 
+//this is the url path
+const path = require("path");
 
 module.exports = function(app) {
 
-  app.use('*.js', (req, res, next) => {
-    res.set('Content-Type', 'text/javascript')
-    next();
-  })
-
+  //creating the url for the specific html
+  //top line is the route and the second like is where the file is 
   app.get("/notes", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/notes.html"));
   });
@@ -17,7 +16,7 @@ module.exports = function(app) {
   });
 
   
-  //re routs to home page 
+  //re-routes to home page 
   app.get("*", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/index.html"));
   });
