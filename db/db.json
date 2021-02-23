@@ -1,6 +1,11 @@
 [
-    {
-        "title":"Test Title",
-        "text":"Test text"
-    }
+  {
+    "title": "Test Title",
+    "text": "Test text"
+  },
+  {
+    "id": null,
+    "title": "The virtual lab",
+    "note": "efnweofnwef"
+  }
 ]

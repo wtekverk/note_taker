@@ -1,14 +1,31 @@
-const router = require('express').Router;
-const db = require('../db/db.json');
-const fs = require('fs')
+const noteData = require("../db/db.json");
 
-router.get('/api/notes', (req, res) => 
-
-fs.readFile('../db/db.json', function(err, data){
-    var data_ = JSON.parse(data);
-    console.log(data_)
-})
-);
+module.exports = function(app) {
+  
+  app.get("/api/notes", function(req, res) {
+    res.json(noteData);
+  });
 
 
-//loops threw arr and concat to array 
+  app.post("/api/notes", function(req, res) {
+    let received = req.body;
+    received.id = noteData.length.toString();
+    noteData.push(received);
+    res.json(received);
+  })
+
+ 
+  app.delete("/api/notes/:id", function(req,res) {
+    let deleteID = req.params.id;
+    for (var i = 0; i < noteData.length; i++) {
+      if (noteData[i].id == deleteID) {
+        noteData.splice(i, 1);
+        break;
+      }
+    }
+    for (var i = 0; i < noteData.length; i++) {
+      noteData[i].id = i.toString();
+    }
+    return res.json(true);
+  })
+};
